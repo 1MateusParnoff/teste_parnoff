@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,11 +12,12 @@ return new class extends Migration
     {
         Schema::create('agendamentos', function (Blueprint $table) {
             $table->id(); 
-            $table->unsigedBigInteger('id_cliente');
-            $table->unsigedBigInteger('id_barbeiro');
-            $table->datetime('data_hora'); 
-            $table->String('Status'); 
+            $table->unsignedBigInteger('id_cliente');
+            $table->unsignedBigInteger('id_barbeiro');
+            $table->dateTime('data_hora'); 
+            $table->string('status'); 
             $table->timestamps();
+
             $table->foreign('id_barbeiro')->references('id')->on('barbeiros')->onDelete('cascade');
             $table->foreign('id_cliente')->references('id')->on('clientes')->onDelete('cascade');
         });
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('agendamentos');
     }
 };

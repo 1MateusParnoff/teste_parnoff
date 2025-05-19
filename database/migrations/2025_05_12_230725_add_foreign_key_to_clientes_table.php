@@ -11,22 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('barbearia', function (Blueprint $table) {
-            $table->id(); 
-            $table->unsigedBigInteger('id_agendamentos');
-            $table->String('nome'); 
-            $table->String('telefone');
-            $table->email('email'); 
-            $table->email('endereco'); 
-            $table->timestamps();
+        Schema::table('clientes', function (Blueprint $table) {
+            $table->foreign('id_agendamentos')->references('id')->on('agendamentos')->onDelete('cascade');
         });
     }
+
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        //
+        Schema::table('clientes', function (Blueprint $table) {
+            //
+        });
     }
 };

@@ -11,15 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('possui', function (Blueprint $table) {
+        Schema::create('clientes', function (Blueprint $table) {
             $table->id(); 
-            $table->unsigedBigInteger('id_barbearia');
-            $table->unsigedBigInteger('id_barbeiros');
+            $table->unsignedBigInteger('id_agendamentos');
+            $table->string('nome'); 
+            $table->string('celular');
+            $table->string('email'); 
             $table->timestamps();
-            $table->foreign('id_barbeiros')->references('id')->on('barbeiros')->onDelete('cascade');
-            $table->foreign('id_barbearia')->references('id')->on('barbearia')->onDelete('cascade');
+            
         });
     }
+    
 
     /**
      * Reverse the migrations.
