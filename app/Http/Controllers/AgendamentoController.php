@@ -10,21 +10,13 @@ use App\Models\Barbeiro;
 
 class AgendamentoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        // Se quiser filtrar só os agendamentos criados pelo usuário logado, mantenha a condição abaixo,
-        // caso contrário, remova o where.
         $agendamentos = Agendamento::where('created_by', Auth::id())->with(['cliente', 'barbeiro'])->get();
 
         return view('agendamento.index', compact('agendamentos'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         $clientes = Cliente::all();
@@ -33,9 +25,6 @@ class AgendamentoController extends Controller
         return view('agendamento.create', compact('clientes', 'barbeiros'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $data = $request->validate([
@@ -54,14 +43,10 @@ class AgendamentoController extends Controller
             ->with('success', 'Agendamento criado com sucesso!');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
         $agendamento = Agendamento::with(['cliente', 'barbeiro'])->findOrFail($id);
 
-        // Verifica se o usuário é o criador (pode remover se quiser acesso aberto)
         if ($agendamento->created_by !== Auth::id()) {
             abort(403);
         }
@@ -69,9 +54,6 @@ class AgendamentoController extends Controller
         return view('agendamento.show', compact('agendamento'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
         $agendamento = Agendamento::findOrFail($id);
@@ -86,9 +68,6 @@ class AgendamentoController extends Controller
         return view('agendamento.edit', compact('agendamento', 'clientes', 'barbeiros'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
         $agendamento = Agendamento::findOrFail($id);
@@ -111,9 +90,6 @@ class AgendamentoController extends Controller
             ->with('success', 'Agendamento atualizado com sucesso!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         $agendamento = Agendamento::findOrFail($id);

@@ -8,27 +8,21 @@ use App\Models\Realiza;
 
 class RealizaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index()
     {
-        // Se quiser filtrar pelo usuário logado, ajuste aqui
+       
         $realizacoes = Realiza::all();
         return view('realiza.index', compact('realizacoes'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    
     public function create()
     {
         return view('realiza.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    
     public function store(Request $request)
     {
         $data = $request->validate([
@@ -36,7 +30,6 @@ class RealizaController extends Controller
             'id_agendamento' => 'required|integer|exists:agendamentos,id',
         ]);
 
-        // Se quiser salvar quem criou essa relação, pode adicionar created_by aqui
 
         $realiza = Realiza::create($data);
 
@@ -45,27 +38,18 @@ class RealizaController extends Controller
             ->with('success', 'Relação criada com sucesso!');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show($id)
     {
         $realiza = Realiza::findOrFail($id);
         return view('realiza.show', ['realiza' => $realiza]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit($id)
     {
         $realiza = Realiza::findOrFail($id);
         return view('realiza.edit', compact('realiza'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, $id)
     {
         $realiza = Realiza::findOrFail($id);
@@ -82,9 +66,6 @@ class RealizaController extends Controller
             ->with('success', 'Relação atualizada com sucesso!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy($id)
     {
         $realiza = Realiza::findOrFail($id);

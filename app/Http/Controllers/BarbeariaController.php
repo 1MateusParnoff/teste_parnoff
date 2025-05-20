@@ -7,26 +7,17 @@ use App\Models\Barbearia;
 
 class BarbeariaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $barbearias = Barbearia::all();
         return view('barbearias.index', compact('barbearias'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('barbearias.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $data = $request->validate([
@@ -43,27 +34,18 @@ class BarbeariaController extends Controller
             ->with('success', 'Barbearia criada com sucesso!');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show($id)
     {
         $barbearia = Barbearia::findOrFail($id);
         return view('barbearias.show', compact('barbearia'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit($id)
     {
         $barbearia = Barbearia::findOrFail($id);
         return view('barbearias.edit', compact('barbearia'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, $id)
     {
         $barbearia = Barbearia::findOrFail($id);
@@ -82,9 +64,6 @@ class BarbeariaController extends Controller
             ->with('success', 'Barbearia atualizada com sucesso!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy($id)
     {
         $barbearia = Barbearia::findOrFail($id);

@@ -8,35 +8,27 @@ use App\Models\Cliente;
 
 class ClienteController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index()
     {
-        // Lista todos os clientes criados pelo usuário logado
+        
         $clientes = Cliente::where('created_by', Auth::id())->get();
 
         return view('cliente.index', compact('clientes'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('cliente.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $data = $request->validate([
             'nome'      => 'required|string|max:255',
             'celular'   => 'required|string|max:20',
             'email'     => 'required|email|max:255',
-            'id_agendamentos' => 'nullable|integer', // Relacionamento futuro, se necessário
+            'id_agendamentos' => 'nullable|integer', 
         ]);
 
         $data['created_by'] = Auth::id();
@@ -48,9 +40,6 @@ class ClienteController extends Controller
             ->with('success', 'Cliente cadastrado com sucesso!');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
         $cliente = Cliente::findOrFail($id);
@@ -62,9 +51,6 @@ class ClienteController extends Controller
         return view('cliente.show', compact('cliente'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
         $cliente = Cliente::findOrFail($id);
@@ -76,9 +62,6 @@ class ClienteController extends Controller
         return view('cliente.edit', compact('cliente'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
         $cliente = Cliente::findOrFail($id);
@@ -101,9 +84,6 @@ class ClienteController extends Controller
             ->with('success', 'Cliente atualizado com sucesso!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         $cliente = Cliente::findOrFail($id);
