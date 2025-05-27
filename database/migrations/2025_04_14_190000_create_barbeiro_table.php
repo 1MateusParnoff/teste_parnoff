@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('barbeiros', function (Blueprint $table) {
+        Schema::create('barbeiro', function (Blueprint $table) {
             $table->id(); 
             $table->string('nome');
             $table->enum('especialidade', ['Corte', 'Barba', 'Sobrancelha']);
@@ -18,6 +18,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('barbeiros');
+        Schema::dropIfExists('barbeiro');
     }
 };

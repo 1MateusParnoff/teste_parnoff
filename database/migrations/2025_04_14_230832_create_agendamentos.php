@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('status'); 
             $table->timestamps();
 
-            $table->foreign('id_barbeiro')->references('id')->on('barbeiros')->onDelete('cascade');
+            $table->foreign('id_barbeiro')->references('id')->on('barbeiro')->onDelete('cascade');
             $table->foreign('id_cliente')->references('id')->on('clientes')->onDelete('cascade');
         });
     }

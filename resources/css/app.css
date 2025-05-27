@@ -64,3 +64,33 @@ select:focus[data-flux-control] {
 /* \[:where(&)\]:size-4 {
     @apply size-4;
 } */
+
+@layer components {
+    .btn {
+        @apply inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2;
+    }
+
+    .btn-green {
+        @apply bg-green-500 text-white hover:bg-green-600;
+    }
+
+    .btn-blue {
+        @apply bg-blue-500 text-white hover:bg-blue-600;
+    }
+
+    .title {
+        @apply text-2xl font-bold mb-4;
+    }
+
+    .container-box {
+        @apply container mx-auto p-4;
+    }
+
+    .list-item {
+        @apply mb-2 flex items-center;
+    }
+
+    .link {
+        @apply text-blue-600 hover:underline;
+    }
+}

@@ -9,13 +9,13 @@ class BarbeiroController extends Controller
 {
     public function index()
     {
-        $barbeiros = Barbeiro::all();
-        return view('barbeiros.index', compact('barbeiros'));
+        $barbeiro = Barbeiro::all();
+        return view('barbeiro.index', compact('barbeiro'));
     }
 
     public function create()
     {
-        return view('barbeiros.create');
+        return view('barbeiro.create');
     }
 
     public function store(Request $request)
@@ -28,20 +28,20 @@ class BarbeiroController extends Controller
         $barbeiro = Barbeiro::create($data);
 
         return redirect()
-            ->route('barbeiros.show', $barbeiro)
+            ->route('barbeiro.show', $barbeiro)
             ->with('success', 'Barbeiro criado com sucesso!');
     }
 
     public function show($id)
     {
         $barbeiro = Barbeiro::findOrFail($id);
-        return view('barbeiros.show', compact('barbeiro'));
+        return view('barbeiro.show', compact('barbeiro'));
     }
 
     public function edit($id)
     {
         $barbeiro = Barbeiro::findOrFail($id);
-        return view('barbeiros.edit', compact('barbeiro'));
+        return view('barbeiro.edit', compact('barbeiro'));
     }
 
     public function update(Request $request, $id)
@@ -56,7 +56,7 @@ class BarbeiroController extends Controller
         $barbeiro->update($data);
 
         return redirect()
-            ->route('barbeiros.show', $barbeiro)
+            ->route('barbeiro.show', $barbeiro)
             ->with('success', 'Barbeiro atualizado com sucesso!');
     }
 
@@ -66,7 +66,7 @@ class BarbeiroController extends Controller
         $barbeiro->delete();
 
         return redirect()
-            ->route('barbeiros.index')
+            ->route('barbeiro.index')
             ->with('success', 'Barbeiro excluído com sucesso!');
     }
 }

@@ -4,6 +4,7 @@ use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BarbeiroController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -13,9 +14,8 @@ Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
-Route::view('barbeiro', 'barbeiro')
-    ->middleware(['auth', 'verified'])
-    ->name('barbeiro');
+Route::resource('barbeiro', BarbeiroController::class)
+    ->middleware(['auth', 'verified']);
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');

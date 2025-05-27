@@ -2,7 +2,7 @@
   <div class="container mx-auto p-4">
     <h1 class="text-2xl font-bold mb-4">Editar barbeiro</h1>
 
-    <form action="{{ route('barbeiros.update', $barbeiro) }}" method="POST" class="space-y-4">
+    <form action="{{ route('barbeiro.update', $barbeiro) }}" method="POST" class="space-y-4">
       @csrf
       @method('PUT')
 
@@ -32,7 +32,7 @@
         <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">
           Atualizar
         </button>
-        <a href="{{ route('barbeiros.show', $barbeiro) }}" class="text-blue-600 hover:underline">
+        <a href="{{ route('barbeiro.show', $barbeiro) }}" class="text-blue-600 hover:underline">
           Cancelar
         </a>
       </div>

@@ -2,7 +2,7 @@
   <div class="container mx-auto p-4">
     <h1 class="text-2xl font-bold mb-4">Novo Barbeiro</h1>
 
-    <form action="{{ route('barbeiros.store') }}" method="POST" class="space-y-4">
+    <form action="{{ route('barbeiro.store') }}" method="POST" class="space-y-4">
       @csrf
 
       <div>
@@ -32,7 +32,7 @@
         <button type="submit" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">
           Criar Barbeiro
         </button>
-        <a href="{{ route('barbeiros.index') }}" class="text-blue-600 hover:underline">
+        <a href="{{ route('barbeiro.index') }}" class="text-blue-600 hover:underline">
           Cancelar
         </a>
       </div>
