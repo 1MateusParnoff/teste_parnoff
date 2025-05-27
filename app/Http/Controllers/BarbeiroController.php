@@ -34,10 +34,10 @@ class BarbeiroController extends Controller
 
     public function show($id)
     {
-        $barbeiro = Barbeiro::findOrFail($id);
+        $barbeiro = Barbeiro::with(['agendamentos.cliente', 'agendamentos.servico', 'servicos'])->findOrFail($id);
         return view('barbeiro.show', compact('barbeiro'));
     }
-
+    
     public function edit($id)
     {
         $barbeiro = Barbeiro::findOrFail($id);
