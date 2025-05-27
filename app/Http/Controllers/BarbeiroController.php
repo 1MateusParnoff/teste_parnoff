@@ -69,4 +69,13 @@ class BarbeiroController extends Controller
             ->route('barbeiro.index')
             ->with('success', 'Barbeiro excluído com sucesso!');
     }
+
+    public function barbeirosPorServico($servico_id)
+    {
+        $barbeiros = Barbeiro::whereHas('servicos', function($q) use ($servico_id) {
+            $q->where('servicos.id', $servico_id);
+        })->get(['id', 'nome']);
+
+        return response()->json($barbeiros);
+    }
 }
